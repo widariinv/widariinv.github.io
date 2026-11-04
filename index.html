@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#147fe3">
+<title>Pricelist | Widari Invitation</title>
+<style>
+:root{
+  --blue:#087fe5; --blue2:#35b9f4; --navy:#102e67; --ink:#172746;
+  --muted:#64748b; --pale:#eaf5ff; --line:#cfe5fa; --white:#fff;
+  --purple:#8d83ed; --shadow:0 18px 48px rgba(28,103,174,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+ background:linear-gradient(145deg,#f8fcff 0%,#edf7ff 45%,#f4f1ff 100%);line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1100px,calc(100% - 34px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.84);backdrop-filter:blur(16px);border-bottom:1px solid rgba(185,216,245,.7)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:850;color:var(--navy);letter-spacing:-.5px}
+.brand-mark{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue2));display:grid;place-items:center;box-shadow:0 7px 18px #168de544}
+.brand-mark svg{width:29px}
+.brand span{font-size:18px}
+.navlinks{display:flex;align-items:center;gap:22px;font-size:13px;color:#526582;font-weight:700}
+.navlinks a:hover{color:var(--blue)}
+.nav-cta,.btn{border:0;border-radius:999px;background:linear-gradient(100deg,#0879df,#39baf4);color:white;font-weight:800;box-shadow:0 9px 22px #168de533;transition:.25s;cursor:pointer}
+.nav-cta{padding:11px 18px;font-size:13px}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:14px 22px;font-size:14px}
+.btn:hover,.nav-cta:hover{transform:translateY(-2px);box-shadow:0 13px 26px #168de544}
+.hero{padding:76px 0 54px;text-align:center;position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(1px);z-index:-1}
+.hero:before{width:360px;height:360px;background:radial-gradient(circle,#c9eaff99,transparent 70%);left:-150px;top:0}
+.hero:after{width:420px;height:420px;background:radial-gradient(circle,#d9d4ff88,transparent 70%);right:-180px;top:-70px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border:1px solid #c5e4fb;background:#ffffffb8;border-radius:999px;color:#167dc5;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+.hero h1{font-size:clamp(35px,6vw,62px);line-height:1.05;letter-spacing:-2.5px;color:var(--navy);margin:20px 0 14px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#0879df,#41baf2,#817de9);background-clip:text;color:transparent}
+.hero p{max-width:610px;margin:0 auto;color:#64748b;font-size:16px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:27px}
+.btn.secondary{background:#fff;color:#167dc5;border:1px solid #c8e4fa;box-shadow:none}
+.hero-note{margin-top:22px;color:#8191a8;font-size:12px}
+.section-head{text-align:center;margin:18px 0 28px}
+.section-head .kicker{font-size:12px;letter-spacing:1.7px;text-transform:uppercase;color:#1688d8;font-weight:850}
+.section-head h2{margin:7px 0;color:var(--navy);font-size:clamp(26px,4vw,38px);letter-spacing:-1px}
+.section-head p{margin:0;color:var(--muted);font-size:14px}
+.packages{padding:20px 0 85px}
+.package-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}
+.card{position:relative;background:rgba(255,255,255,.92);border:1px solid #d6e9fa;border-radius:25px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-5px);box-shadow:0 23px 55px rgba(28,103,174,.17)}
+.card-top{padding:25px 26px 21px;background:linear-gradient(120deg,#e3f3ff,#f4f2ff);border-bottom:1px solid #e0effb;position:relative}
+.card-top:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-50px;top:-90px;background:linear-gradient(135deg,#55c5f533,#9b91f333)}
+.plan-label{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative;z-index:1}
+.plan-label h3{margin:0;color:#176fc0;font-size:20px;letter-spacing:.5px}
+.pill{font-size:10px;font-weight:850;letter-spacing:.8px;text-transform:uppercase;color:#167ac6;background:#fff;border:1px solid #cbe6fa;border-radius:999px;padding:6px 10px}
+.price{position:relative;z-index:1;margin:15px 0 1px;color:var(--navy);font-size:clamp(31px,5vw,43px);font-weight:900;letter-spacing:-1.5px}
+.duration{position:relative;z-index:1;color:#3e78ac;font-weight:700;font-size:13px}
+.card-body{padding:22px 26px 25px;display:flex;flex-direction:column;flex:1}
+.feature-title{font-size:13px;font-weight:850;color:#233c67;margin:0 0 13px}
+.features{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:10px}
+.features li{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#34445e;line-height:1.4}
+.check{flex:none;width:19px;height:19px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#25b96f,#57d59a);color:#fff;font-size:12px;font-weight:900;margin-top:0px}
+.card .btn{width:100%;margin-top:auto}
+.card.featured{border:2px solid #73bdf0;box-shadow:0 20px 55px rgba(28,103,174,.2)}
+.card.featured .card-top{background:linear-gradient(120deg,#d8efff,#e9e4ff)}
+.card.featured .pill{background:linear-gradient(90deg,#1684e4,#8b82e9);color:white;border:0}
+.card.unlimited .card-top{background:linear-gradient(115deg,#e1f2ff,#e8e5ff)}
+.card.unlimited .price{background:linear-gradient(90deg,#0879df,#817de9);background-clip:text;color:transparent}
+.contact{padding:0 0 72px}
+.contact-panel{border-radius:25px;padding:30px;background:linear-gradient(115deg,#0d78d8,#35b8ee 58%,#837ce6);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:25px;box-shadow:0 18px 42px #227fc333}
+.contact-panel h2{margin:0 0 5px;font-size:25px}
+.contact-panel p{margin:0;color:#eaf7ff;font-size:13px}
+.contact-links{display:flex;gap:10px;flex-wrap:wrap}
+.contact-links a{padding:11px 14px;border-radius:13px;background:#ffffff20;border:1px solid #ffffff50;font-size:12px;font-weight:800}
+footer{padding:24px 0 35px;text-align:center;color:#8292a8;font-size:12px}
+footer strong{color:#397fb5}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.25,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:700px){
+ .nav{height:66px}.brand span{font-size:16px}.navlinks{gap:10px}.navlinks a:not(.nav-cta){display:none}
+ .nav-cta{padding:10px 13px;font-size:11px}
+ .hero{padding:57px 0 42px}.hero p{font-size:14px}
+ .package-grid{grid-template-columns:1fr;gap:17px}
+ .card-top{padding:22px 22px 18px}.card-body{padding:20px 22px 23px}
+ .contact-panel{padding:25px 21px;display:block}.contact-links{margin-top:18px}
+ .contact-links a{flex:1;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#home" aria-label="Widari Invitation">
+   <div class="brand-mark"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="4" y="10" width="40" height="28" rx="4" stroke="white" stroke-width="2.8"/><path d="M5 13l19 15 19-15" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 22c-5-7-12 0 0 8 12-8 5-15 0-8z" fill="white"/></svg></div>
+   <span>Widari Invitation</span>
+  </a>
+  <nav class="navlinks"><a href="#paket">Pricelist</a><a href="#kontak">Kontak</a><a class="nav-cta" href="#paket">Pilih Paket</a></nav>
+ </div>
+</header>
+<main id="home">
+ <section class="hero">
+  <div class="wrap">
+   <span class="eyebrow">✦ Digital Wedding Invitation</span>
+   <h1>Make Your Moment<br><em>Unforgettable.</em></h1>
+   <p>Undangan digital Web, Video, dan 3D dengan desain elegan untuk merayakan cerita istimewamu.</p>
+   <div class="hero-actions"><a class="btn" href="#paket">Lihat Pricelist <span>↓</span></a><a class="btn secondary" href="#kontak">Hubungi Admin</a></div>
+   <div class="hero-note">Pilih paket yang sesuai, lalu pesan langsung melalui WhatsApp.</div>
+  </div>
+ </section>
+ <section class="packages" id="paket">
+  <div class="wrap">
+   <div class="section-head reveal"><div class="kicker">Pricelist 2026</div><h2>Pilih Paket Undanganmu</h2><p>Enam pilihan paket dengan tampilan dan fitur yang konsisten.</p></div>
+   <div class="package-grid">
+    <article class="card reveal">
+     <div class="card-top"><div class="plan-label"><h3>PAKET GRATIS</h3><span class="pill">Free trial</span></div><div class="price">Rp 0</div><div class="duration">Aktif 2 Hari</div></div>
+     <div class="card-body"><p class="feature-title">Yang kamu dapatkan:</p><ul class="features">
+      <li><span class="check">✓</span>Masa aktif 2 hari</li><li><span class="check">✓</span>Share dan buku tamu unlimited</li><li><span class="check">✓</span>Guest on Screen (check-in tamu di hari H)</li><li><span class="check">✓</span>Auto Blast Smart WhatsApp 10 tamu</li><li><span class="check">✓</span>Gratis mencoba semua tema</li><li><span class="check">✓</span>Gratis 1 musik</li><li><span class="check">✓</span>Countdown acara</li><li><span class="check">✓</span>Galeri 3 foto</li><li><span class="check">✓</span>Google Map lokasi acara</li><li><span class="check">✓</span>Bebas custom quotes di undangan</li><li><span class="check">✓</span>Terbatas input 1 jenis acara di 1 undangan</li><li><span class="check">✓</span>Voice comment untuk tamu</li>
+     </ul><a class="btn order" data-plan="Paket Gratis - Rp 0" href="#">Mulai Sekarang Gratis ↗</a></div>
+    </article>
+    <article class="card reveal">
+     <div class="card-top"><div class="plan-label"><h3>PAKET SILVER</h3><span class="pill">10 hari</span></div><div class="price">Rp 59.000</div><div class="duration">Aktif 10 Hari</div></div>
+     <div class="card-body"><p class="feature-title">Yang kamu dapatkan:</p><ul class="features">
+      <li><span class="check">✓</span>Masa aktif 10 hari</li><li><span class="check">✓</span>Share dan buku tamu unlimited</li><li><span class="check">✓</span>Guest on Screen (check-in tamu di hari H)</li><li><span class="check">✓</span>Auto Blast Smart WhatsApp 50 tamu</li><li><span class="check">✓</span>Bebas memilih tema (160+ pilihan)</li><li><span class="check">✓</span>Bebas memilih musik (900+ pilihan)</li><li><span class="check">✓</span>Countdown acara</li><li><span class="check">✓</span>Galeri 3 foto</li><li><span class="check">✓</span>Google Map lokasi acara</li><li><span class="check">✓</span>Bebas custom quotes di undangan</li><li><span class="check">✓</span>Bisa input 2 jenis acara di 1 undangan</li><li><span class="check">✓</span>Bisa input link streaming YouTube, IG &amp; TikTok</li><li><span class="check">✓</span>Custom preview WhatsApp saat share undangan</li><li><span class="check">✓</span>Voice comment untuk tamu</li>
+     </ul><a class="btn order" data-plan="Paket Silver - Rp 59.000" href="#">Pesan Sekarang ↗</a></div>
+    </article>
+    <article class="card reveal">
+     <div class="card-top"><div class="plan-label"><h3>PAKET GOLD</h3><span class="pill">30 hari</span></div><div class="price">Rp 89.000</div><div class="duration">Aktif 30 Hari · 1 Bulan</div></div>
+     <div class="card-body"><p class="feature-title">Yang kamu dapatkan:</p><ul class="features">
+      <li><span class="check">✓</span>Masa aktif 1 bulan</li><li><span class="check">✓</span>Share dan buku tamu unlimited</li><li><span class="check">✓</span>Guest on Screen (check-in tamu di hari H)</li><li><span class="check">✓</span>Auto Blast Smart WhatsApp 100 tamu</li><li><span class="check">✓</span>Bebas memilih tema (160+ pilihan)</li><li><span class="check">✓</span>Bebas memilih musik (900+ pilihan)</li><li><span class="check">✓</span>Bebas custom font tema</li><li><span class="check">✓</span>Countdown acara</li><li><span class="check">✓</span>Galeri 6 foto</li><li><span class="check">✓</span>Google Map lokasi acara</li><li><span class="check">✓</span>Bebas custom quotes di undangan</li><li><span class="check">✓</span>Bisa input 2 jenis acara di 1 undangan</li><li><span class="check">✓</span>Bisa input link streaming YouTube, IG &amp; TikTok</li><li><span class="check">✓</span>Custom preview WhatsApp saat share undangan</li><li><span class="check">✓</span>Fitur kirim amplop untuk mempelai</li><li><span class="check">✓</span>Voice comment untuk tamu</li>
+     </ul><a class="btn order" data-plan="Paket Gold - Rp 89.000" href="#">Pesan Sekarang ↗</a></div>
+    </article>
+    <article class="card featured reveal">
+     <div class="card-top"><div class="plan-label"><h3>PAKET PLATINUM</h3><span class="pill">Paling populer</span></div><div class="price">Rp 139.000</div><div class="duration">Aktif 90 Hari · 3 Bulan</div></div>
+     <div class="card-body"><p class="feature-title">Yang kamu dapatkan:</p><ul class="features">
+      <li><span class="check">✓</span>Masa aktif 3 bulan</li><li><span class="check">✓</span>Share dan buku tamu unlimited</li><li><span class="check">✓</span>Guest on Screen (check-in tamu di hari H)</li><li><span class="check">✓</span>Auto Blast Smart WhatsApp 200 tamu</li><li><span class="check">✓</span>Bebas memilih tema (160+ pilihan)</li><li><span class="check">✓</span>Bebas memilih musik (900+ pilihan)</li><li><span class="check">✓</span>Bebas custom font tema</li><li><span class="check">✓</span>Countdown acara</li><li><span class="check">✓</span>Galeri 9 foto</li><li><span class="check">✓</span>Google Map lokasi acara</li><li><span class="check">✓</span>Bebas custom quotes di undangan</li><li><span class="check">✓</span>Bisa input 3 jenis acara di 1 undangan</li><li><span class="check">✓</span>Bisa input link streaming YouTube, IG &amp; TikTok</li><li><span class="check">✓</span>Custom preview WhatsApp saat share undangan</li><li><span class="check">✓</span>Fitur kirim amplop untuk mempelai</li><li><span class="check">✓</span>Voice comment untuk tamu</li><li><span class="check">✓</span>Love Story mempelai</li><li><span class="check">✓</span>Fitur dresscode</li>
+     </ul><a class="btn order" data-plan="Paket Platinum - Rp 139.000" href="#">Pesan Sekarang ↗</a></div>
+    </article>
+    <article class="card reveal">
+     <div class="card-top"><div class="plan-label"><h3>PAKET DIAMOND</h3><span class="pill">150 hari</span></div><div class="price">Rp 179.000</div><div class="duration">Aktif 150 Hari · 5 Bulan</div></div>
+     <div class="card-body"><p class="feature-title">Yang kamu dapatkan:</p><ul class="features">
+      <li><span class="check">✓</span>Masa aktif 5 bulan</li><li><span class="check">✓</span>Share dan buku tamu unlimited</li><li><span class="check">✓</span>Guest on Screen (check-in tamu di hari H)</li><li><span class="check">✓</span>Auto Blast Smart WhatsApp 350 tamu</li><li><span class="check">✓</span>Bebas memilih tema (160+ pilihan)</li><li><span class="check">✓</span>Bebas memilih musik (900+ pilihan)</li><li><span class="check">✓</span>Bebas custom font tema</li><li><span class="check">✓</span>Countdown acara</li><li><span class="check">✓</span>Galeri 18 foto</li><li><span class="check">✓</span>Google Map lokasi acara</li><li><span class="check">✓</span>Bebas custom quotes di undangan</li><li><span class="check">✓</span>Bisa input 5 jenis acara di 1 undangan</li><li><span class="check">✓</span>Bisa input link streaming YouTube, IG &amp; TikTok</li><li><span class="check">✓</span>Custom preview WhatsApp saat share undangan</li><li><span class="check">✓</span>Fitur kirim amplop untuk mempelai</li><li><span class="check">✓</span>Voice comment untuk tamu</li><li><span class="check">✓</span>Love Story mempelai</li><li><span class="check">✓</span>Gratis akses ke Wedding Planner</li>
+     </ul><a class="btn order" data-plan="Paket Diamond - Rp 179.000" href="#">Pesan Sekarang ↗</a></div>
+    </article>
+    <article class="card unlimited reveal">
+     <div class="card-top"><div class="plan-label"><h3>PAKET UNLIMITED</h3><span class="pill">Lifetime</span></div><div class="price">Rp 369.000</div><div class="duration">Aktif selamanya · Kenangan after wedding</div></div>
+     <div class="card-body"><p class="feature-title">Yang kamu dapatkan:</p><ul class="features">
+      <li><span class="check">✓</span>Masa aktif selamanya</li><li><span class="check">✓</span>Share dan buku tamu unlimited</li><li><span class="check">✓</span>Guest on Screen (check-in tamu di hari H)</li><li><span class="check">✓</span>Auto Blast Smart WhatsApp 800 tamu</li><li><span class="check">✓</span>Bebas memilih tema (160+ pilihan)</li><li><span class="check">✓</span>Bebas memilih musik (900+ pilihan)</li><li><span class="check">✓</span>Bebas custom font tema</li><li><span class="check">✓</span>Countdown acara</li><li><span class="check">✓</span>Galeri unlimited</li><li><span class="check">✓</span>Google Map lokasi acara</li><li><span class="check">✓</span>Bebas custom quotes di undangan</li><li><span class="check">✓</span>Bisa input hingga 10 jenis acara di 1 undangan</li><li><span class="check">✓</span>Bisa input link streaming YouTube, IG &amp; TikTok</li><li><span class="check">✓</span>Custom preview WhatsApp saat share undangan</li><li><span class="check">✓</span>Fitur kirim amplop untuk mempelai</li><li><span class="check">✓</span>Voice comment untuk tamu</li><li><span class="check">✓</span>Fitur dresscode mempelai</li><li><span class="check">✓</span>Gratis akses ke Wedding Planner</li>
+     </ul><a class="btn order" data-plan="Paket Unlimited - Rp 369.000" href="#">Pesan Sekarang ↗</a></div>
+    </article>
+   </div>
+  </div>
+ </section>
+ <section class="contact" id="kontak">
+  <div class="wrap"><div class="contact-panel reveal">
+   <div><h2>Siap membuat undanganmu?</h2><p>Konsultasi dan pemesanan melalui admin Widari Invitation.</p></div>
+   <div class="contact-links"><a href="https://wa.me/6285869092749" target="_blank" rel="noopener">WhatsApp Admin 1</a><a href="https://wa.me/6283149347308" target="_blank" rel="noopener">WhatsApp Admin 2</a><a href="https://instagram.com/widari.invitation" target="_blank" rel="noopener">Instagram @widari.invitation</a></div>
+  </div></div>
+ </section>
+</main>
+<footer><div class="wrap"><strong>Widari Invitation</strong> · Undangan Digital Web | Video | 3D<br>Instagram @widari.invitation</div></footer>
+<script>
+const revealObserver = new IntersectionObserver((entries, observer)=>{
+ entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}});
+},{threshold:.10});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+const admin1='6285869092749';
+document.querySelectorAll('.order').forEach(button=>{
+ const plan=button.dataset.plan;
+ const message=`Halo Widari Invitation, saya ingin memesan ${plan}. Mohon informasi selanjutnya.`;
+ button.href=`https://wa.me/${admin1}?text=${encodeURIComponent(message)}`;
+ button.target='_blank';button.rel='noopener';
+});
+</script>
+</body>
+</html>
